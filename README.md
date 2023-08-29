@@ -1,4 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Take a look to my **design solution** in figma [here](https://www.figma.com/file/ce0bwas2kwugzVs2vS6Hri/Jamming?type=design&node-id=0%3A1&mode=design&t=9YGx22OR99GbAqbZ-1)
 
 ## Getting Started
 
