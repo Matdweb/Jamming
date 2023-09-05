@@ -36,7 +36,7 @@ body {
 }
 
 .header-bold {
-  font-size: 4rem;  
+  font-size: 4rem;
   font-weight: 700;
 }
 
@@ -65,12 +65,62 @@ p {
   font-weight: 200;
 }
 
-@media screen and (max-width: 600px){
-	/*Big smartphones [426px -> 600px]*/
-  .black-title{ font-size: 4rem; }
-  .header-black, .title-bold { font-size: 2.25rem; }
-  .header-bold { font-size: 2.5rem; }
-  p { font-size: 1.5rem; }
-  .song-title-bold, .song-text { font-size: 1.25rem; }
-  .ligth-text { font-size: 1rem; }
+.btn-primary {
+  width: 18rem;
+  height: 3.7rem;
+  border-radius: 1.8rem;
+  background: #1ED760;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn-error {
+  background: #D71E1E;
+}
+
+.btn-spotify {
+  width: 31rem;
+  height: 6.8rem;
+  border-radius: 100px;
+  background: url("../public/asstes/img/spotify.png"), lightgray 50% / cover no-repeat;
+}
+
+@media screen and (max-width: 600px) {
+
+  /*Big smartphones [426px -> 600px]*/
+  .black-title {
+    font-size: 4rem;
+  }
+
+  .header-black,
+  .title-bold {
+    font-size: 2.25rem;
+  }
+
+  .header-bold {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  .song-title-bold,
+  .song-text {
+    font-size: 1.25rem;
+  }
+
+  .ligth-text {
+    font-size: 1rem;
+  }
+
+  .btn-spotify {
+    width: 20rem;
+    height: 5rem;
+    background: url("../public/asstes/img/spotify-responsive.png"), lightgray 50% / cover no-repeat;
+  }
+
+  .btn-primary {
+    width: 18rem;
+    height: 3rem;
+  }
 }
