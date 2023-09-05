@@ -1,5 +1,5 @@
 
-function LogIn() {
+function Login() {
     return (
         <section className='w-full flex justify-center items-center px-9 pb-20'>
             <div className='mt-16 sm:mt-36 px-4 sm:px-6 py-8 shadow-black max-w-[37rem] rounded-[2.5rem] flex justify-center items-center flex-col flex-nowrap bg-black/70'>
@@ -11,4 +11,4 @@ function LogIn() {
     )
 }
 
-export default LogIn
+export default Login
