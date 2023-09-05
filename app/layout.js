@@ -1,9 +1,9 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 
-const inter = Inter({ 
-  subsets: ['latin'], 
-  weight: ['900','700','400','200']
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['900', '700', '400', '200']
 })
 
 export const metadata = {
@@ -14,7 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className + 'w-full min-h-screen bg-green-500'}>
+        <section className='text-center mt-16 sm:mt-24'>
+          <h2 className='header-black'>Create your custom playlist with</h2>
+          <h1 className='black-title'>Jamming</h1>
+        </section>
+        <main>
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
