@@ -13,7 +13,7 @@ export default function Home() {
       <p className='ligth-text'>ligth txt</p>
       <button className='btn-spotify' />
       <button className='btn-primary song-title-bold'>Primary button</button>
-      <button className='btn-primary btn-error song-title-bold'> Error :(</button>
+      <button className='btn-primary error song-title-bold'> Error :(</button>
     </>
   )
 }
