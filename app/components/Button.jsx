@@ -1,15 +1,25 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-function Button({ error, toggle, children }) {
-    const [background, setBackground] = useState('#1ED760');
+function Button({ state, toggle=()=>{}, children }) {
+    const [backgroundHex, setBackgroundHex] = useState(`#707070`);
 
-    if(error) setBackground('#D71E1E');
+    useEffect(() => {
+        switch (state) {
+            case 'successful': setBackgroundHex(`#1ED760`)
+                break;
+            case 'loading': setBackgroundHex(`#707070`)
+                break;
+            case 'error': setBackgroundHex(`#D71E1E`)
+                break;
+            default: setBackgroundHex(`#707070`);
+        }
+    }, [state])
 
     return (
-        <Button className={`w-72 h-14 rounded-bl-3xl bg-[${background}] shadow-xl hover:opacity-80 active:scale-95`} onClick={()=> toggle()}>
-            {children}
-        </Button>
+        <button className={`w-72 sm:h-14 h-12 rounded-3xl bg-[${backgroundHex}] shadow-lg hover:opacity-80 active:scale-95`} onClick={() => toggle()}>
+            <h1 className='song-title-bold'>{children}</h1>
+        </button>
     )
 }
 
