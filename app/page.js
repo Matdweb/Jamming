@@ -9,7 +9,10 @@ export default function Home() {
     return (
       <div>
         <h1 className='title-bold'>Welcome {session?.token?.name}</h1>
-        <Button error={false} toggle={signOut}>Sign Out</Button>
+        <Button state={'loading'} >Sign Out</Button>
+        <Button state={'error'} >Sign Out</Button>
+        <Button state={'successful'} toggle={signOut} >Sign Out</Button>
+        <Button state={'j'} toggle={signOut} >default</Button>
       </div>
     )
   } else {
