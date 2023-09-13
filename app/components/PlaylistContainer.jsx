@@ -40,7 +40,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={'l'}>Save this in Spotify</Button>
+                    <Button state={'loading'}>Save this in Spotify</Button>
                 </div>
             </div>
         </div>

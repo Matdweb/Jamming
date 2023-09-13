@@ -17,7 +17,11 @@ function Button({ state, toggle=()=>{}, children }) {
     }, [state])
 
     return (
-        <button className={`w-72 sm:h-14 h-12 rounded-3xl bg-[${backgroundHex}] shadow-lg hover:opacity-80 active:scale-95`} onClick={() => toggle()}>
+        <button 
+        className={`w-72 sm:h-14 h-12 rounded-full shadow-lg hover:opacity-80 active:scale-95`} 
+        onClick={() => toggle()}
+        style={{backgroundColor: backgroundHex}}
+        >
             <h1 className='song-title-bold'>{children}</h1>
         </button>
     )
