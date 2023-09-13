@@ -77,8 +77,26 @@ p {
   opacity: .8;
 }
 
-.btn-spotify:active{
+.btn-spotify:active {
   transform: scale(.99);
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff00;
+  border-radius: 20px;
+}
+
+.songs-container:hover ::-webkit-scrollbar-thumb {
+  background: #ffffff70;
 }
 
 @media screen and (max-width: 600px) {
@@ -99,7 +117,7 @@ p {
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .song-title-bold,
