@@ -1,17 +1,25 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SongContainer from "./SongContainer"
 import Button from "./Button";
 import SpotifySongs from "@/lib/Spotify/songs";
+import { useContext } from 'react';
+import { SpotifyContext } from '@/context/SpotifyContextProvider';
 
 function PlaylistContainer() {
     const [playlistName, setPlaylistName] = useState('New Playlist');
 
     const [songs, setSongs] = useState(SpotifySongs);
 
+    const { token } = useContext(SpotifyContext);
+
     const handleChange = ({ target }) => {
         setPlaylistName(target.value);
     }
+
+    useEffect(()=> {
+        token.setAccessToken('a new cool access token')
+    })
 
     return (
         <div className='max-w-[44rem] flex justify-center items-center sm:px-8 pb-9'>
@@ -40,7 +48,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={'loading'}>Save this in Spotify</Button>
+                    <Button state={'loading'} toggle={()=> console.log(token.accessToken)}>Save this in Spotify</Button>
                 </div>
             </div>
         </div>
