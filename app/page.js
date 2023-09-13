@@ -1,18 +1,20 @@
 'use client'
 import { signOut, useSession } from 'next-auth/react'
 import Login from './components/Login'
-import Button from './components/Button';
+import SongSearcher from './components/SongSearcher';
+import SongsContainer from './components/SongsContainer';
+import PlaylistContainer from './components/PlaylistContainer';
 
 export default function Home() {
   const { data: session } = useSession();
   if (session) {
     return (
       <div>
-        <h1 className='title-bold'>Welcome {session?.token?.name}</h1>
-        <Button state={'loading'} >Sign Out</Button>
-        <Button state={'error'} >Sign Out</Button>
-        <Button state={'successful'} toggle={signOut} >Sign Out</Button>
-        <Button state={'j'} toggle={signOut} >default</Button>
+        <section className='w-full h-full flex justify-center items-start flex-row flex-wrap md:mt-24 mt-16 pb-32'>
+          <SongSearcher />
+          <SongsContainer />
+          <PlaylistContainer />
+        </section>
       </div>
     )
   } else {
