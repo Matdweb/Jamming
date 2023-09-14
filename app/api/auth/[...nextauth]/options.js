@@ -1,12 +1,13 @@
 import SpotifyProvider from 'next-auth/providers/spotify'
+import { SpotifyCredentials } from '@/lib/Spotify/spotifySearchCredentials';
 
 export default {
     providers: [
         SpotifyProvider({
             authorization:
                 'https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private,playlist-modify-private,playlist-modify-public',
-            clientId: process.env.SPOTIFY_CLIENT_ID,
-            clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+            clientId: SpotifyCredentials.client_id,
+            clientSecret: SpotifyCredentials.client_secret,
         }),
     ],
     callbacks: {

@@ -5,21 +5,24 @@ import Button from "./Button";
 import SpotifySongs from "@/lib/Spotify/songs";
 import { useContext } from 'react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
+import { useSession } from "next-auth/react";
 
 function PlaylistContainer() {
     const [playlistName, setPlaylistName] = useState('New Playlist');
-
     const [songs, setSongs] = useState(SpotifySongs);
 
-    const { token } = useContext(SpotifyContext);
+    const { data: session } = useSession();
+    const refresh_token = session?.token.accessToken;
+    const { token: { getAccessToken } } = useContext(SpotifyContext);
 
     const handleChange = ({ target }) => {
         setPlaylistName(target.value);
     }
 
-    useEffect(()=> {
-        token.setAccessToken('a new cool access token')
-    })
+    const testGetAccessToken = async () => {
+        const data = await getAccessToken(refresh_token);
+        console.log(data);
+    }
 
     return (
         <div className='max-w-[44rem] flex justify-center items-center sm:px-8 pb-9'>
@@ -48,7 +51,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={'loading'} toggle={()=> console.log(token.accessToken)}>Save this in Spotify</Button>
+                    <Button state={'loading'} toggle={async () => await testGetAccessToken()}>Save this in Spotify</Button>
                 </div>
             </div>
         </div>
