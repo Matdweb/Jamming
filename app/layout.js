@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthProvider>
         <SpotifyContextProvider>
-        <body className={inter.className + 'w-full min-h-screen bg-green-500'}>
+        <body className={inter.className + ' w-full min-h-screen bg-green-500'}>
           <section className='text-center mt-16 sm:mt-24'>
             <h2 className='header-black'>Create your custom playlist with</h2>
             <h1 className='black-title'>Jamming</h1>
