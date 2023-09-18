@@ -17,7 +17,14 @@ function SongsContainer() {
         <hr className='w-full border-t-4 mb-4' />
         <div className='w-full max-h-[22rem] sm:max-h-[37rem] overflow-y-scroll'>
           {songs.map(({ id, name, artist, album }) => {
-            return <SongContainer key={id} songName={name} artist={artist} album={album} />
+            return (
+              <SongContainer
+                key={id}
+                songName={name}
+                artist={artist}
+                album={album}
+              />
+            )
           })}
         </div>
       </div>
