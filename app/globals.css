@@ -86,6 +86,10 @@ p {
   width: 7px;
 }
 
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
 ::-webkit-scrollbar-track {
   background: #00000000;
 }
