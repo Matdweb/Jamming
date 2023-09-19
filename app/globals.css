@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,11 +18,120 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  color: #fff;
+  /* background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  line-height: normal; */
+}
+
+.black-title {
+  font-size: 8rem;
+  font-weight: 900;
+}
+
+.header-black {
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.header-bold {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.title-bold {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.song-title-bold {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.song-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.ligth-text {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.btn-spotify {
+  width: 31rem;
+  height: 6.8rem;
+  border-radius: 100px;
+  background: url("../public/asstes/img/spotify.png"), lightgray 50% / cover no-repeat;
+}
+
+.btn-spotify:hover {
+  opacity: .8;
+}
+
+.btn-spotify:active {
+  transform: scale(.99);
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff00;
+  border-radius: 20px;
+}
+
+.songs-container:hover ::-webkit-scrollbar-thumb {
+  background: #ffffff70;
+}
+
+@media screen and (max-width: 600px) {
+
+  /*Big smartphones [426px -> 600px]*/
+  .black-title {
+    font-size: 4rem;
+  }
+
+  .header-black,
+  .title-bold {
+    font-size: 2.25rem;
+    line-height: 2.5rem
+  }
+
+  .header-bold {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  .song-title-bold,
+  .song-text {
+    font-size: 1.25rem;
+  }
+
+  .ligth-text {
+    font-size: 1rem;
+  }
+
+  .btn-spotify {
+    width: 20.6rem;
+    height: 5.3rem;
+    background: url("../public/asstes/img/spotify-responsive.png"), lightgray 50% / cover no-repeat;
+  }
 }
