@@ -15,7 +15,6 @@ function Background({ children }) {
     useEffect(() => {
         setTimeout(() => {
             changeBackground();
-            console.log(backgroundHue)
         }, 100)
     }, [backgroundHue])
 
