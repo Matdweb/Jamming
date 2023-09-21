@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     const { refresh_token } = await request.json();
 
-    const response = await fetch(SpotifyCredentials.TOKEN_ENDPOINT, {
+    const response = await fetch(SpotifyCredentials.SPOTIFY_TOKEN_ENDPOINT, {
         method: 'POST',
         headers: {
             Authorization: 'Basic ' + SpotifyCredentials.basic,
