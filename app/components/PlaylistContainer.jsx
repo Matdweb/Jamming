@@ -6,6 +6,7 @@ import SpotifySongs from "@/lib/Spotify/songs";
 import { useContext } from 'react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
 import { useSession } from "next-auth/react";
+import createNewPlaylist from "@/lib/Spotify/createNewPlaylist/createNewPlaylist";
 
 function PlaylistContainer() {
     const [playlistName, setPlaylistName] = useState('New Playlist');
@@ -19,9 +20,11 @@ function PlaylistContainer() {
         setPlaylistName(target.value);
     }
 
-    const testGetAccessToken = async () => {
-        const data = await getAccessToken(refresh_token);
-        console.log(data);
+    const createPlaylist = async () => {
+        const access_token = await getAccessToken(refresh_token);
+        const response = await createNewPlaylist(access_token, playlistName, songs);
+
+        console.log(response);
     }
 
     return (
@@ -51,7 +54,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={'loading'} toggle={async () => await testGetAccessToken()}>Save this in Spotify</Button>
+                    <Button state={'loading'} toggle={async () => await createPlaylist()}>Save this in Spotify</Button>
                 </div>
             </div>
         </div>
