@@ -1,7 +1,6 @@
 'use client'
 import { createContext, useEffect, useState } from 'react'
-import requestAccessToken from './requestAccessToken';
-import { useSession } from 'next-auth/react';
+import requestAccessToken from '@/lib/Spotify/getAccessToken/requestAccessToken';
 
 export const SpotifyContext = createContext()
 
