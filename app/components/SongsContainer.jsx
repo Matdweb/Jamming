@@ -1,14 +1,10 @@
 'use client'
-import { useState } from "react"
 import SongContainer from "./SongContainer"
+import { useContext, useEffect } from "react"
+import { SpotifyContext } from "@/context/SpotifyContextProvider"
 
 function SongsContainer() {
-  const [songs, setSongs] = useState([{
-    id: (Math.random() * 10).toString(),
-    name: 'Photograph',
-    artist: 'Ed Sheeran',
-    album: 'Some random album',
-  }]);
+  const { songs: { resultSongs } } = useContext(SpotifyContext);
 
   return (
     <div className='max-w-[44rem] flex justify-center items-center sm:px-8 pb-9'>
@@ -16,13 +12,12 @@ function SongsContainer() {
         <h2 className='header-bold'>Results</h2>
         <hr className='w-full border-t-4 mb-4' />
         <div className='w-full max-h-[22rem] sm:max-h-[37rem] overflow-y-scroll'>
-          {songs.map(({ id, name, artist, album }) => {
+          {resultSongs.map((song) => {
             return (
               <SongContainer
-                key={id}
-                songName={name}
-                artist={artist}
-                album={album}
+                key={song.id}
+                content={song}
+                isRemovable={false}
               />
             )
           })}

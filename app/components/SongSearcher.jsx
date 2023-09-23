@@ -1,12 +1,21 @@
 'use client'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { SpotifyContext } from '@/context/SpotifyContextProvider';
+import songs from '@/lib/Spotify/songs';
 
 function SongSearcher() {
     const [songName, setSongName] = useState('');
+    const { songs: { resultSongs, setResultSongs } } = useContext(SpotifyContext);
 
     const handleChange = ({ target }) => {
         setSongName(target.value);
     }
+
+    useEffect(()=> {
+        songs.forEach(song => {
+            setResultSongs(prev => [...prev, song])
+        })
+    }, [])
 
     return (
         <section className='w-full flex justify-center items-center md:mb-32 mb-14'>

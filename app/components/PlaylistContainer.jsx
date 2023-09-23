@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import SongContainer from "./SongContainer"
 import Button from "./Button";
-import SpotifySongs from "@/lib/Spotify/songs";
 import { useContext } from 'react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
 import { useSession } from "next-auth/react";
@@ -10,7 +9,7 @@ import createNewPlaylist from "@/lib/Spotify/createNewPlaylist/createNewPlaylist
 
 function PlaylistContainer() {
     const [playlistName, setPlaylistName] = useState('New Playlist');
-    const [songs, setSongs] = useState(SpotifySongs);
+    const { playlist: { playlistSongs } } = useContext(SpotifyContext)
 
     const { data: session } = useSession();
     const refresh_token = session?.token.accessToken;
@@ -22,7 +21,7 @@ function PlaylistContainer() {
 
     const createPlaylist = async () => {
         const access_token = await getAccessToken(refresh_token);
-        const response = await createNewPlaylist(access_token, playlistName, songs);
+        const response = await createNewPlaylist(access_token, playlistName, playlistSongs);
 
         console.log(response);
     }
@@ -39,18 +38,14 @@ function PlaylistContainer() {
                 />
                 <hr className='w-full border-t-4 mb-4 bg-black' />
                 <div className='w-full max-h-[20rem] sm:max-h-[32rem] min-h-[20rem] sm:min-h-[32rem] overflow-y-scroll'>
-                    {songs.map((song) => {
-                        if (song.name) {
-                            return (
-                                <SongContainer
-                                    key={song.id}
-                                    songName={song.name}
-                                    artist={song.artist}
-                                    album={song.album}
-                                    isRemovable={true}
-                                />
-                            )
-                        }
+                    {playlistSongs.map((song) => {
+                        return (
+                            <SongContainer
+                                key={song.id}
+                                content={song}
+                                isRemovable={true}
+                            />
+                        )
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
