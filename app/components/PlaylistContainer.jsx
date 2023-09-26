@@ -21,6 +21,7 @@ function PlaylistContainer() {
     }
 
     const handleSuccessCall = () => {
+        setButtonColor('green');
         setButtonText('Ready 🥳');
         resetButtonText();
     }
@@ -32,19 +33,21 @@ function PlaylistContainer() {
     }
 
     const resetButtonText = () => {
-        setTimeout(()=> setButtonText('Save this in Spotify') , 2500);
+        setTimeout(()=> setButtonText('Save this in Spotify') , 3000);
     }
 
     const createPlaylist = async () => {
         setButtonColor('gray');
         try {
             const access_token = await getAccessToken(refresh_token);
-            const response = await createNewPlaylist(access_token, playlistSongs);
+            const response = await createNewPlaylist(access_token, playlistName, playlistSongs);
             console.log(response);
             handleSuccessCall();
+            return response;
         } catch (e) {
             handleErrorCall();
             console.log(e);
+            return e;
         }
     }
 
