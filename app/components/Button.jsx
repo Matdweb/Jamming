@@ -1,9 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-function Button({ color, toggle = () => { }, children }) {
+function Button({ color, toggle = async () => { }, children }) {
     const [backgroundHex, setBackgroundHex] = useState(`#707070`);
     const [isBlocked, setIsBlocked] = useState(true);
+    const [loadAnimation, setLoadAnimation] = useState(false);
 
     const handleButtonColor = () => {
         switch (color) {
@@ -23,7 +24,7 @@ function Button({ color, toggle = () => { }, children }) {
         setTimeout(()=> {
             setBackgroundHex(`#1ED760`);
             setIsBlocked(false);
-        }, 2500)
+        }, 3000)
     }
 
     const handleLoading = () => {
@@ -38,8 +39,9 @@ function Button({ color, toggle = () => { }, children }) {
 
     const handleToggle = async () => {
         if (!isBlocked) {
-           toggle();
-
+           const res = await toggle();
+            if(res) setLoadAnimation(true);
+            setTimeout(()=> {setLoadAnimation(false)}, 3000)
         }
     }
 
@@ -49,7 +51,7 @@ function Button({ color, toggle = () => { }, children }) {
 
     return (
         <button
-            className={`loading-button w-72 sm:h-14 h-12 rounded-full shadow-lg cursor-not-allowed ${!isBlocked ? `cursor-pointer hover:opacity-80 active:scale-95` : ``}`}
+            className={` w-72 sm:h-14 h-12 rounded-full shadow-lg cursor-not-allowed ${!isBlocked ? `cursor-pointer hover:opacity-80 active:scale-95` : ``} ${loadAnimation ? `loading-button` : ``}`}
             onClick={() => handleToggle()}
             style={{ backgroundColor: backgroundHex }}
         >
