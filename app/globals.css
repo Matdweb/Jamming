@@ -103,6 +103,27 @@ body::-webkit-scrollbar {
   background: #ffffff70;
 }
 
+.loading-button::after {
+  content: ' ';
+  position: absolute;
+  display: inline-block;
+  width: 0rem;
+  height: 3.8rem;
+  margin-top: -3rem;
+  margin-left: -9rem;
+  background-color: #0000006d;
+  animation: loading 3s ease-in-out;
+}
+
+@keyframes loading { 
+  0% {
+    width: 0rem;
+  }
+  100% {
+    width: 18rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
 
   /*Big smartphones [426px -> 600px]*/
