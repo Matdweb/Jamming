@@ -9,22 +9,55 @@ import createNewPlaylist from "@/lib/Spotify/createNewPlaylist/createNewPlaylist
 
 function PlaylistContainer() {
     const [playlistName, setPlaylistName] = useState('New Playlist');
-    const { playlist: { playlistSongs } } = useContext(SpotifyContext)
-
+    const { token: { getAccessToken }, playlist: { playlistSongs } } = useContext(SpotifyContext)
     const { data: session } = useSession();
     const refresh_token = session?.token.accessToken;
-    const { token: { getAccessToken } } = useContext(SpotifyContext);
+
+    const [buttonColor, setButtonColor] = useState('gray');
+    const [buttonText, setButtonText] = useState('Save this in Spotify')
 
     const handleChange = ({ target }) => {
         setPlaylistName(target.value);
     }
 
-    const createPlaylist = async () => {
-        const access_token = await getAccessToken(refresh_token);
-        const response = await createNewPlaylist(access_token, playlistName, playlistSongs);
-
-        console.log(response);
+    const handleSuccessCall = () => {
+        setButtonColor('green');
+        setButtonText('Ready! 🥳');
+        resetButtonText();
     }
+
+    const handleErrorCall = () => {
+        setButtonColor('red');
+        setButtonText('Try again in a second!');
+        resetButtonText();
+    }
+
+    const resetButtonText = () => {
+        setTimeout(()=> setButtonText('Save this in Spotify') , 3000);
+    }
+
+    const createPlaylist = async () => {
+        setButtonColor('gray');
+        try {
+            const access_token = await getAccessToken(refresh_token);
+            const response = await createNewPlaylist(access_token, playlistName, playlistSongs);
+            console.log(response);
+            handleSuccessCall();
+            return response;
+        } catch (e) {
+            handleErrorCall();
+            console.log(e);
+            return e;
+        }
+    }
+
+    useEffect(() => {
+        if (playlistSongs.length > 0) {
+            setButtonColor('green');
+        } else {
+            setButtonColor('gray');
+        }
+    }, [playlistSongs])
 
     return (
         <div className='max-w-[44rem] flex justify-center items-center sm:px-8 pb-9'>
@@ -49,7 +82,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={'loading'} toggle={async () => await createPlaylist()}>Save this in Spotify</Button>
+                    <Button color={buttonColor} toggle={() => createPlaylist()}>{buttonText}</Button>
                 </div>
             </div>
         </div>
