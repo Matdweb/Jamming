@@ -22,7 +22,7 @@ function PlaylistContainer() {
 
     const handleSuccessCall = () => {
         setButtonColor('green');
-        setButtonText('Ready 🥳');
+        setButtonText('Ready! 🥳');
         resetButtonText();
     }
 
