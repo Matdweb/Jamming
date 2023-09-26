@@ -13,7 +13,7 @@ function PlaylistContainer() {
     const { data: session } = useSession();
     const refresh_token = session?.token.accessToken;
 
-    const [buttonState, setButtonState] = useState('loading');
+    const [buttonColor, setButtonColor] = useState('gray');
     const [buttonText, setButtonText] = useState('Save this in Spotify')
 
     const handleChange = ({ target }) => {
@@ -21,23 +21,22 @@ function PlaylistContainer() {
     }
 
     const handleSuccessCall = () => {
-        setButtonState('successful');
         setButtonText('Ready 🥳');
         resetButtonText();
     }
 
     const handleErrorCall = () => {
-        setButtonState('error');
+        setButtonColor('red');
         setButtonText('Try again in a second!');
         resetButtonText();
     }
 
     const resetButtonText = () => {
-        setTimeout(()=> setButtonText('Save this in Spotify') , 4000);
+        setTimeout(()=> setButtonText('Save this in Spotify') , 2500);
     }
 
     const createPlaylist = async () => {
-        setButtonState('loading');
+        setButtonColor('gray');
         try {
             const access_token = await getAccessToken(refresh_token);
             const response = await createNewPlaylist(access_token, playlistSongs);
@@ -51,9 +50,9 @@ function PlaylistContainer() {
 
     useEffect(() => {
         if (playlistSongs.length > 0) {
-            setButtonState('successful');
+            setButtonColor('green');
         } else {
-            setButtonState('loading');
+            setButtonColor('gray');
         }
     }, [playlistSongs])
 
@@ -80,7 +79,7 @@ function PlaylistContainer() {
                     })}
                 </div>
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
-                    <Button state={buttonState} toggle={() => createPlaylist()}>{buttonText}</Button>
+                    <Button color={buttonColor} toggle={() => createPlaylist()}>{buttonText}</Button>
                 </div>
             </div>
         </div>
