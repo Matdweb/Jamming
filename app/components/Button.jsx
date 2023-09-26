@@ -1,20 +1,19 @@
 'use client'
-import { useEffect, useState, useContext } from 'react'
-import { SpotifyContext } from '@/context/SpotifyContextProvider';
+import { useEffect, useState } from 'react'
 
-function Button({ state, toggle = () => { }, children }) {
+function Button({ color, toggle = () => { }, children }) {
     const [backgroundHex, setBackgroundHex] = useState(`#707070`);
     const [isBlocked, setIsBlocked] = useState(true);
 
-    const handleButtonState = () => {
-        switch (state) {
-            case 'successful': handleSuccessful(); break;
+    const handleButtonColor = () => {
+        switch (color) {
+            case 'green': handleSuccessful(); break;
 
-            case 'loading': handleLoading(); break;
+            case 'gray': handleLoading(); break;
 
-            case 'error': handleError(); break;
+            case 'red': handleError(); break;
 
-            default: setBackgroundHex(`#707070`); setIsBlocked(false);
+            default: setBackgroundHex(`#00000`); setIsBlocked(false);
         }
     }
 
@@ -24,7 +23,7 @@ function Button({ state, toggle = () => { }, children }) {
         setTimeout(()=> {
             setBackgroundHex(`#1ED760`);
             setIsBlocked(false);
-        }, 4000)
+        }, 2500)
     }
 
     const handleLoading = () => {
@@ -39,17 +38,18 @@ function Button({ state, toggle = () => { }, children }) {
 
     const handleToggle = async () => {
         if (!isBlocked) {
-            toggle();
+           toggle();
+
         }
     }
 
     useEffect(() => {
-        handleButtonState();
-    }, [state])
+        handleButtonColor();
+    }, [color])
 
     return (
         <button
-            className={`w-72 sm:h-14 h-12 rounded-full cursor-blocked shadow-lg hover:opacity-80 active:scale-95 ${isBlocked ? `cursor-not-allowed active:scale-100 hover:opacity-100` : ''}`}
+            className={`loading-button w-72 sm:h-14 h-12 rounded-full shadow-lg cursor-not-allowed ${!isBlocked ? `cursor-pointer hover:opacity-80 active:scale-95` : ``}`}
             onClick={() => handleToggle()}
             style={{ backgroundColor: backgroundHex }}
         >
