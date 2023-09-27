@@ -70,7 +70,7 @@ function PlaylistContainer() {
                     onChange={handleChange}
                 />
                 <hr className='w-full border-t-4 mb-4 bg-black' />
-                <div className='w-full max-h-[20rem] sm:max-h-[32rem] min-h-[20rem] sm:min-h-[32rem] overflow-y-scroll'>
+                <div className='w-full max-h-[20rem] sm:max-h-[32rem] min-h-[20rem] sm:min-h-[32rem]'>
                     {playlistSongs.map((song) => {
                         return (
                             <SongContainer
