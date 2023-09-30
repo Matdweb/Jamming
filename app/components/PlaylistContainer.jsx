@@ -44,7 +44,7 @@ function PlaylistContainer() {
         setErrorModal(false);
         try {
             const access_token = await getAccessToken(refresh_token);
-            const response = await createNewPlaylist(access_token,  playlistSongs);
+            const response = await createNewPlaylist(access_token, playlistName,  playlistSongs);
             console.log(response);
             handleSuccessCall();
             return response;
