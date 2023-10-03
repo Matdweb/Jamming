@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import requestAccessToken from '@/lib/Spotify/getAccessToken/requestAccessToken';
 
 export const SpotifyContext = createContext()

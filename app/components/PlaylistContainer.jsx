@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import SongContainer from "./SongContainer"
 import Button from "./Button";
+import ErrorBox from "./ErrorBox";
 import { useContext } from 'react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
 import { useSession } from "next-auth/react";
@@ -14,7 +15,8 @@ function PlaylistContainer() {
     const refresh_token = session?.token.accessToken;
 
     const [buttonColor, setButtonColor] = useState('gray');
-    const [buttonText, setButtonText] = useState('Save this in Spotify')
+    const [buttonText, setButtonText] = useState('Save this in Spotify');
+    const [errorModal, setErrorModal] = useState(false);
 
     const handleChange = ({ target }) => {
         setPlaylistName(target.value);
@@ -29,22 +31,25 @@ function PlaylistContainer() {
     const handleErrorCall = () => {
         setButtonColor('red');
         setButtonText('Try again in a second!');
+        setErrorModal(true);
         resetButtonText();
     }
 
     const resetButtonText = () => {
-        setTimeout(()=> setButtonText('Save this in Spotify') , 3000);
+        setTimeout(() => setButtonText('Save this in Spotify'), 3000);
     }
 
     const createPlaylist = async () => {
         setButtonColor('gray');
+        setErrorModal(false);
         try {
             const access_token = await getAccessToken(refresh_token);
-            const response = await createNewPlaylist(access_token, playlistName, playlistSongs);
+            const response = await createNewPlaylist(access_token, playlistName,  playlistSongs);
             console.log(response);
             handleSuccessCall();
             return response;
         } catch (e) {
+            setErrorModal(true);
             handleErrorCall();
             console.log(e);
             return e;
@@ -81,6 +86,9 @@ function PlaylistContainer() {
                         )
                     })}
                 </div>
+
+                {errorModal ? <ErrorBox /> : ''}
+
                 <div className='w-full pt-6 flex justify-center sm:justify-end items-center ml-0 sm:ml-6'>
                     <Button color={buttonColor} toggle={() => createPlaylist()}>{buttonText}</Button>
                 </div>

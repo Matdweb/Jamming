@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 
-function Background({ children }) {
+function Background({ error=false, children }) {
     const [backgroundHue, setBackgroundHue] = useState(115);
 
     const changeBackground = () => {
@@ -13,9 +13,13 @@ function Background({ children }) {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            changeBackground();
-        }, 100)
+        if (!error) {
+            setTimeout(() => {
+                changeBackground();
+            }, 100)
+        } else {
+            setBackgroundHue(0)
+        }
     }, [backgroundHue])
 
     return (

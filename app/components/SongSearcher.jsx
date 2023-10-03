@@ -5,7 +5,7 @@ import songs from '@/lib/Spotify/songs';
 
 function SongSearcher() {
     const [songName, setSongName] = useState('');
-    const { songs: { resultSongs, setResultSongs } } = useContext(SpotifyContext);
+    const { songs: { setResultSongs } } = useContext(SpotifyContext);
 
     const handleChange = ({ target }) => {
         setSongName(target.value);

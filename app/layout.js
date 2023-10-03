@@ -2,7 +2,6 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import AuthProvider from './components/AuthProvider'
 import SpotifyContextProvider from '@/context/SpotifyContextProvider'
-import Background from './components/Background'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,19 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Background>
           <AuthProvider>
             <SpotifyContextProvider>
-              <section className='text-center pt-16 sm:pt-24'>
-                <h2 className='header-black'>Create your custom playlist with</h2>
-                <h1 className='black-title'>Jamming</h1>
-              </section>
               <main>
                 {children}
               </main>
             </SpotifyContextProvider>
           </AuthProvider>
-        </Background>
       </body>
     </html >
   )
