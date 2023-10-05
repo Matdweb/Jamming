@@ -2,10 +2,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
-import { SpotifyCredentials } from '@/lib/Spotify/spotifySearchCredentials';
-
 import requestSongs from '@/lib/Spotify/requestSongs/requestSongs';
-import songs from '@/lib/Spotify/songs';
 
 function SongSearcher() {
     const [songName, setSongName] = useState('');
