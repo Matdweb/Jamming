@@ -11,7 +11,7 @@ function SongContainer({ content, isRemovable = false }) {
   return (
     <div className='min-h-[5rem] sm:min-h-[6rem] border-b flex justify-between items-center flex-row'>
       <div className='pl-3 pr-9 flex justify-center items-start flex-col text-start'>
-        <h4 className='song-title-bold'>{content.name}</h4>
+        <h4 className='song-title-bold'>{content.song_name}</h4>
         <p className='ligth-text'>{content.artist}  |  {content.album}</p>
       </div>
       <span className='pr-4 cursor-pointer shrink-0 grow-0'>
