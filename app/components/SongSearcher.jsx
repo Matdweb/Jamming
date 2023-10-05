@@ -18,18 +18,18 @@ function SongSearcher() {
     }
 
     const searchSongs = async () => {
-        const access_token = await getAccessToken(refresh_token);
-        const songs = await requestSongs(access_token, songName);
-        setResultSongs(songs);
+        if (songName) {
+            const access_token = await getAccessToken(refresh_token);
+            const songs = await requestSongs(access_token, songName);
+            setResultSongs(songs);
+        } else {
+            setResultSongs([]);
+        }
     }
 
     useEffect(() => {
         const pause = setTimeout(() => {
-            if(songName){
-                searchSongs();
-            } else { 
-                setResultSongs([]);
-            }
+            searchSongs();
         }, 2000)
         return () => clearTimeout(pause);
     }, [songName])
