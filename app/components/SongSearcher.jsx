@@ -1,21 +1,45 @@
 'use client'
 import { useContext, useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
-import songs from '@/lib/Spotify/songs';
+import requestSongs from '@/lib/Spotify/requestSongs/requestSongs';
+import { useRouter } from 'next/navigation';
 
 function SongSearcher() {
     const [songName, setSongName] = useState('');
-    const { songs: { setResultSongs } } = useContext(SpotifyContext);
+    const { token: { getAccessToken }, songs: { setResultSongs } } = useContext(SpotifyContext);
+    const { data: session } = useSession();
+    const refresh_token = session?.token.accessToken;
+    const router = useRouter();
 
     const handleChange = ({ target }) => {
         setSongName(target.value);
     }
 
-    useEffect(()=> {
-        songs.forEach(song => {
-            setResultSongs(prev => [...prev, song])
-        })
-    }, [])
+    const handleSearchError = () => {
+        router.push('/error');
+    }
+
+    const searchSongs = async () => {
+        if (songName) {
+            const access_token = await getAccessToken(refresh_token);
+            const songs = await requestSongs(access_token, songName);
+            setResultSongs(songs);
+            
+            if (songs.length === 0) {
+                handleSearchError();
+            }
+        } else {
+            setResultSongs([]);
+        }
+    }
+
+    useEffect(() => {
+        const pause = setTimeout(() => {
+            searchSongs();
+        }, 2000)
+        return () => clearTimeout(pause);
+    }, [songName])
 
     return (
         <section className='w-full flex justify-center items-center md:mb-32 mb-14'>
