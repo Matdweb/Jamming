@@ -3,15 +3,21 @@ import { useContext, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { SpotifyContext } from '@/context/SpotifyContextProvider';
 import requestSongs from '@/lib/Spotify/requestSongs/requestSongs';
+import { useRouter } from 'next/navigation';
 
 function SongSearcher() {
     const [songName, setSongName] = useState('');
     const { token: { getAccessToken }, songs: { setResultSongs } } = useContext(SpotifyContext);
     const { data: session } = useSession();
     const refresh_token = session?.token.accessToken;
+    const router = useRouter();
 
     const handleChange = ({ target }) => {
         setSongName(target.value);
+    }
+
+    const handleSearchError = () => {
+        router.push('/error');
     }
 
     const searchSongs = async () => {
@@ -19,6 +25,10 @@ function SongSearcher() {
             const access_token = await getAccessToken(refresh_token);
             const songs = await requestSongs(access_token, songName);
             setResultSongs(songs);
+            
+            if (songs.length === 0) {
+                handleSearchError();
+            }
         } else {
             setResultSongs([]);
         }
