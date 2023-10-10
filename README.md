@@ -24,7 +24,7 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font
 
 ## Features
-Learn about this app's functionalities and how do they work: 
+Learn about this app's functionalities and how they work: 
 
 1. Font styling [`Create Global Styles`](https://github.com/Matdweb/Jamming/pull/11)
 2. For [`User authentication functionality`](https://github.com/Matdweb/Jamming/pull/14) we used `NextAuth`, learn more [here](https://next-auth.js.org/getting-started/example)
@@ -39,11 +39,17 @@ Learn how the Backend works for this app:
 3. How to search for songs with Spotify API - [`Search for song functionality`](https://github.com/Matdweb/Jamming/pull/35)
 
 ### Additional 
-If you'd like learn more about how we crafted the layout and various interface elements, see here: 
+If you'd to like learn more about how we crafted the layout and various interface elements, see here: 
 - [Main page](https://github.com/Matdweb/Jamming/pull/18)
 - [Background color changer](https://github.com/Matdweb/Jamming/pull/25)
 - [Button animations](https://github.com/Matdweb/Jamming/pull/29)
 - [Error page](https://github.com/Matdweb/Jamming/pull/34)
+
+### Experimental code
+Before the development process began, three GitHub repositories were set up to contain experimental code for testing the functionalities of this app. Exploring these repositories can be highly beneficial if you wish to gain a deeper understanding of the API requests, Next.js best practices, Next.js endpoints, and other elements used in this application: 
+- [Spotify Playlist Retriever v12](https://github.com/Matdweb/Spotiy-Playlist-Retriever-v12)
+- [Spotify Playlist Retriever](https://github.com/Matdweb/Spotiy-Playlist-Retriever)
+- [Album Searcher](https://github.com/Matdweb/AlbumSearcher-experimental)
 
 ## How to use this app
 See the step by step to how to create a playlist with this app:
