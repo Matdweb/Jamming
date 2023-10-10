@@ -38,7 +38,7 @@ Learn how the Backend works for this app:
 2. How to create a new playlist in the user's account - [`Create a new playlist`](https://github.com/Matdweb/Jamming/pull/22)
 3. How to search for songs with Spotify API - [`Search for song functionality`](https://github.com/Matdweb/Jamming/pull/35)
 
-### Additional 
+### Development Insights
 If you'd to like learn more about how we crafted the layout and various interface elements, see here: 
 - [Main page](https://github.com/Matdweb/Jamming/pull/18)
 - [Background color changer](https://github.com/Matdweb/Jamming/pull/25)
